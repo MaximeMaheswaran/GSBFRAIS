@@ -277,6 +277,14 @@ class PdoGsb
 		}
 	}
 
+
+	public function validerFicheFrais($id, $mois, $dernierMois, $idVisiteur, $idEtat, $idEtatFicheFrais, )
+	{
+
+	}
+
+
+
 	/**
 	 * Crée une nouvelle fiche de frais et les lignes de frais au forfait pour un Visiteur et un mois donnés
 		   
