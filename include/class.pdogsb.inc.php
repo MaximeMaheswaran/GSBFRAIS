@@ -75,6 +75,7 @@ clASs PdoGsb
 	 * @return compteur 
 	 * @author Maxence
 	 * */
+
 	public function verifPersonne($login, $mdp)
 	{
 		$compteur = 0 ;
@@ -84,7 +85,6 @@ clASs PdoGsb
 		$ligne = $rs->fetch();
 		if($ligne['nbVisiteur'] != 0){
 			$req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE login= '".$login."' AND mdp= '".$mdp."' AND comptable = 1;";
-			echo $req;
 			$rs = PdoGsb::$monPdo->query($req);
 			$ligne = $rs->fetch();
 			if($ligne['nbVisiteur'] != 0){
@@ -95,6 +95,16 @@ clASs PdoGsb
 			}
         }
 		return $compteur;
+	}
+
+	public function getFicheFraisCL(){
+		$req = "SELECT nom , prenom , idVisiteur, mois, nbJustificatifs, montantValide, dateModif, idEtat
+				FROM FicheFrais , Visiteur
+				WHERE FicheFrais.idVisiteur = Visiteur.id
+				AND idEtat = 'CL'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
 	}
 
 

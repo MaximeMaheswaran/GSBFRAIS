@@ -1,5 +1,5 @@
 ﻿<?php
-include("vues/v_sommaire.php");
+include("vues/v_sommaireComptable.php");
 $action = $_REQUEST['action'];
 $idVisiteur = $_SESSION['idVisiteur'];
 switch ($action) {
@@ -28,6 +28,11 @@ switch ($action) {
 			$nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
 			$dateModif =  $lesInfosFicheFrais['dateModif'];
 			$dateModif =  dateAnglaisVersFrancais($dateModif);
-			include("vues/v_etatFrais.php");
+			include("vues/v_etat.php");
+		}
+
+	case 'tabFicheFraisVisiteur': {
+			include("vues/v_tabFicheFraisVisiteur.php");
+			break;
 		}
 }
