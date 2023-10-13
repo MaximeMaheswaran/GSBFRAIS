@@ -8,6 +8,7 @@ $mois = getMois(date("d/m/Y"));
 
 $pdo = PdoGsb::getPdoGsb();
 $estConnecte = estConnecte();
+// maxime, procedure qui cloture les fichefrais des mois precedent
 $pdo -> allUpdatdeLigneFrais($mois);
 
 if(!isset($_REQUEST['uc']) || !$estConnecte){
