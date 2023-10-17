@@ -10,7 +10,7 @@
          <select id="lstMois" name="lstMois">
            <?php
             foreach ($lesMois as $unMois) {
-              $mois = $unMoias['mois'];
+              $mois = $unMois['mois'];
               $numAnnee =  $unMois['numAnnee'];
               $numMois =  $unMois['numMois'];
               if ($mois == $moisASelectionner) {
