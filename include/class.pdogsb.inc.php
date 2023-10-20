@@ -108,29 +108,29 @@ class PdoGsb
 	 * @author Maixme
 	 * */
 
-	 public function verifPersonneId($id)
-	 {
-		 $compteur = 0;
-		 $req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE id = ?;";
-		 $reqp = PdoGsb::$monPdo->prepare($req);
-		 $reqp -> bindParam(1, $id);
-		 $reqp -> execute();
-		 $ligne = $reqp->fetch();
-		 if ($ligne['nbVisiteur'] != 0) {
-			 $req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE id = ? AND comptable = 1;";
-			 $reqp = PdoGsb::$monPdo->prepare($req);
-			 $reqp -> bindParam(1, $id);
-			 $reqp -> execute();
-			 $ligne = $reqp->fetch();
-			 if ($ligne['nbVisiteur'] != 0) {
-				 $compteur = 2;
-			 } else {
-				 $compteur = 1;
-			 }
-		 }
-		 return $compteur;
-	 }
-	
+	public function verifPersonneId($id)
+	{
+		$compteur = 0;
+		$req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE id = ?;";
+		$reqp = PdoGsb::$monPdo->prepare($req);
+		$reqp->bindParam(1, $id);
+		$reqp->execute();
+		$ligne = $reqp->fetch();
+		if ($ligne['nbVisiteur'] != 0) {
+			$req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE id = ? AND comptable = 1;";
+			$reqp = PdoGsb::$monPdo->prepare($req);
+			$reqp->bindParam(1, $id);
+			$reqp->execute();
+			$ligne = $reqp->fetch();
+			if ($ligne['nbVisiteur'] != 0) {
+				$compteur = 2;
+			} else {
+				$compteur = 1;
+			}
+		}
+		return $compteur;
+	}
+
 	/**
 	 * Retourne les fiches frais à valider
 	 * 
@@ -411,6 +411,18 @@ class PdoGsb
 		$reqp->bindParam(5, $montant);
 		$reqp->execute();
 	}
+
+	public function confirmerFraisHorsForfait($idFrais)
+	{
+		$req = "UPDATE FicheFrais
+				SET idEtat = 'VA'
+				WHERE";
+
+		$reqp = PdoGsb::$monPdo->prepare($req);
+		$reqp->bindParam(1, $idFrais);
+		$reqp->execute();
+	}
+
 	/**
 	 * Supprime le frais hors forfait dont l'id est pASsé en argument
 					

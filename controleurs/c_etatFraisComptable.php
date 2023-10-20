@@ -39,7 +39,7 @@ if (isset($_SESSION)) {
 					$idVisiteur = $_POST['idVisiteur'];
 					$lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
 					$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
-					include("vues/v_listeFraisForfait.php");
+					include("vues/v_listeFraisForfaitEtHorsForfaitComptable.php");
 				}
 			case 'tabFicheFraisVisiteur': {
 					$lesMois = $pdo->getLesMoisDisponibles($idVisiteur);

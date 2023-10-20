@@ -1,6 +1,7 @@
 <?php
 if (isset($_SESSION)) {
 	if ($pdo->verifPersonneId($_SESSION['idVisiteur']) == 1) {
+		include("include/fct.inc.php");
 		include("vues/v_sommaire.php");
 		$idVisiteur = $_SESSION['idVisiteur'];
 		$mois = getMois(date("d/m/Y"));
