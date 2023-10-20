@@ -99,6 +99,37 @@ class PdoGsb
 		}
 		return $compteur;
 	}
+
+	/**
+	 * Retourne si l'utlisateur est un visiteur 1 ou un comptable 2 ou il n'existe pas
+	 * 
+	 * @param $id
+	 * @return compteur 
+	 * @author Maixme
+	 * */
+
+	 public function verifPersonneId($id)
+	 {
+		 $compteur = 0;
+		 $req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE id = ?;";
+		 $reqp = PdoGsb::$monPdo->prepare($req);
+		 $reqp -> bindParam(1, $id);
+		 $reqp -> execute();
+		 $ligne = $reqp->fetch();
+		 if ($ligne['nbVisiteur'] != 0) {
+			 $req = "SELECT COUNT(*) AS nbVisiteur FROM Visiteur WHERE id = ? AND comptable = 1;";
+			 $reqp = PdoGsb::$monPdo->prepare($req);
+			 $reqp -> bindParam(1, $id);
+			 $reqp -> execute();
+			 $ligne = $reqp->fetch();
+			 if ($ligne['nbVisiteur'] != 0) {
+				 $compteur = 2;
+			 } else {
+				 $compteur = 1;
+			 }
+		 }
+		 return $compteur;
+	 }
 	
 	/**
 	 * Retourne les fiches frais à valider

@@ -1,5 +1,8 @@
 <?php
-include("vues/v_sommaireComptable.php");
+
+if (isset($_SESSION)) {
+	if ($pdo->verifPersonneId($_SESSION['idVisiteur']) == 2) {
+		include("vues/v_sommaireComptable.php");
 $idVisiteur = $_SESSION['idVisiteur'];
 $mois = getMois(date("d/m/Y"));
 $numAnnee = substr($mois, 0, 4);
@@ -12,3 +15,10 @@ switch ($action) {
 			break;
 		}
 }
+	} else {
+		header("Location: index.php");
+	}
+} else {
+	header("Location: index.php");
+}
+
