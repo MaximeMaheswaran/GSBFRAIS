@@ -99,14 +99,13 @@ class PdoGsb
 		}
 		return $compteur;
 	}
-
+	
 	/**
 	 * Retourne les fiches frais à valider
 	 * 
 	 * @return ligne 
 	 * @author Maxence
 	 * */
-
 	public function getFicheFraisCL()
 	{
 		$req = "SELECT nom , prenom , idVisiteur, mois, nbJustificatifs, montantValide, dateModif, idEtat
