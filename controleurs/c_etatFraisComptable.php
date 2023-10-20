@@ -31,7 +31,16 @@ switch ($action) {
 			include("vues/v_etat.php");
 		}
 
+	case 'voirEtatFraisComptable': {
+
+			$mois = $_POST['lstMois'];
+			$idVisiteur = $_POST['idVisiteur'];
+			$lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
+			$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
+			include("vues/v_listeFraisForfait.php");
+		}
 	case 'tabFicheFraisVisiteur': {
+			$lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
 			include("vues/v_tabFicheFraisVisiteur.php");
 			break;
 		}

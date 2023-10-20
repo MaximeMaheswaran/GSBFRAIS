@@ -2,10 +2,14 @@
     <?php
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
+    $idVisiteur = $_POST['idVisiteur'];
     ?>
-    <h2>Fiche frais de <?php echo $nom . " " . $prenom ?></h2>
+    <h2>Fiche frais de <?php echo $nom . ' '  . $prenom ?></h2>
     <h3>Mois à sélectionner : </h3>
     <form action="index.php?uc=etatFraisComptable&action=voirEtatFraisComptable" method="post">
+        <input type="hidden" name="idVisiteur" value="<?php echo $idVisiteur ?>">
+        <input type="hidden" name="nom" value="<?php echo $nom ?>">
+        <input type="hidden" name="prenom" value="<?php echo $prenom ?>">
         <div class="corpsForm">
 
             <p>
@@ -14,7 +18,7 @@
                 <select id="lstMois" name="lstMois">
                     <?php
                     foreach ($lesMois as $unMois) {
-                        $mois = $unMoias['mois'];
+                        $mois = $unMois['mois'];
                         $numAnnee =  $unMois['numAnnee'];
                         $numMois =  $unMois['numMois'];
                         if ($mois == $moisASelectionner) {
