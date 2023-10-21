@@ -351,6 +351,12 @@ class PdoGsb
 	}
 
 
+	/**Procedure qui valide une fiche frais d'un visiteur
+	 * 
+	 * @param $idVisiteur
+	 * @param $mois
+	 * @param $lesFrais
+	 */
 	public function validerFicheFrais($idVisiteur, $mois, $lesFrais) {
 		$this -> majFraisForfait($idVisiteur, $mois, $lesFrais);
 		$this -> majEtatFicheFrais($idVisiteur, $mois, 'VA');
