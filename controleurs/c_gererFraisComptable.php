@@ -14,6 +14,21 @@ if (isset($_SESSION)) {
 					include("vues/v_validerFrais.php");
 					break;
 				}
+			case 'validerMajFicheFrais': {
+					$mois = $_POST['lstMois'];
+					$idVisiteurUse = $_POST['idVisiteurUse'];
+					$lesFrais = $_REQUEST['lesFrais'];
+					if (lesQteFraisValides($lesFrais)) {
+						$pdo->validerFicheFrais($idVisiteurUse, $mois, $lesFrais);
+						ajouterMsg("Fiche Frais valide");
+						include("vues/v_msg.php");
+					} else {
+						ajouterErreur("Les valeurs des frais doivent être numériques");
+						include("vues/v_erreurs.php");
+					}
+					break;
+				}
+
 		}
 	} else {
 		header("Location: index.php");

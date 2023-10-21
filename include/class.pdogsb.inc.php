@@ -18,10 +18,10 @@
 
 class PdoGsb
 {
-	private static $serveur = 'mysql:host=172.16.203.209';
+	private static $serveur = 'mysql:host=127.0.0.1';
 	private static $bdd = 'dbname=gsbfrais';
-	private static $user = 'sio';
-	private static $mdp = 'Maxence30072003!';
+	private static $user = 'root';
+	private static $mdp = 'slam';
 	private static $monPdo;
 	private static $monPdoGsb = null;
 	/**
@@ -259,12 +259,13 @@ class PdoGsb
 		$lesCles = array_keys($lesFrais);
 		foreach ($lesCles as $unIdFrais) {
 			$qte = $lesFrais[$unIdFrais];
-			$req = "UPDATE LigneFraisForfait SET LigneFraisForfait.quantite = $qte
+			$req = "UPDATE LigneFraisForfait SET LigneFraisForfait.quantite = ?
 			WHERE LigneFraisForfait.idVisiteur = ? AND LigneFraisForfait.mois = ? AND LigneFraisForfait.idFraisForfait = ?;";
 			$reqp = PdoGsb::$monPdo->prepare($req);
-			$reqp->bindParam(1, $idVisiteur);
-			$reqp->bindParam(2, $mois);
-			$reqp->bindParam(3, $lesFrais);
+			$reqp->bindParam(1, $qte);
+			$reqp->bindParam(2, $idVisiteur);
+			$reqp->bindParam(3, $mois);
+			$reqp->bindParam(4, $unIdFrais);
 			$reqp->execute();
 		}
 	}
@@ -350,8 +351,9 @@ class PdoGsb
 	}
 
 
-	public function validerFicheFrais($id, $mois, $dernierMois, $idVisiteur, $idEtat, $idEtatFicheFrais)
-	{
+	public function validerFicheFrais($idVisiteur, $mois, $lesFrais) {
+		$this -> majFraisForfait($idVisiteur, $mois, $lesFrais);
+		$this -> majEtatFicheFrais($idVisiteur, $mois, 'VA');
 	}
 
 
@@ -486,5 +488,6 @@ class PdoGsb
 		$reqp->bindParam(1, $etat);
 		$reqp->bindParam(2, $idVisiteur);
 		$reqp->bindParam(3, $mois);
+		$reqp->execute();
 	}
 }

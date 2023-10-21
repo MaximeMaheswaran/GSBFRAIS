@@ -1,4 +1,5 @@
-<form method="POST" action="index.php?uc=gererFrais&action=validerMajFraisForfait">
+<div id="contenu">
+<form method="POST" action="index.php?uc=gererFraisComptable&action=validerMajFicheFrais">
     <div class="corpsForm">
 
       <fieldset>
@@ -20,6 +21,8 @@
         ?>
       </fieldset>
     </div>
+    <input type="hidden" name="lstMois" value="<?php echo $mois ?>" >
+    <input type="hidden" name="idVisiteurUse" value="<?php echo $idVisiteur ?>" >
     <div class="piedForm">
       <p>
         <input id="ok" type="submit" value="Valider" size="20" />
