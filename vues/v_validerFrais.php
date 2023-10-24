@@ -38,6 +38,4 @@
         }
         ?>
     </table>
-    <!-- Bouton de soumission du formulaire -->
-    <input type="submit" name="valider" value="Valider">
 </div>

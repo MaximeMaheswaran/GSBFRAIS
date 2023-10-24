@@ -1,5 +1,5 @@
 /* Styles des divisions principales de la page */
-body {
+.visiteurBody {
   background-color: #77aadd;
   background-image: url(imgs/FONDGLOBAL.jpg);
   background-repeat: repeat-x;
@@ -7,6 +7,10 @@ body {
   padding: 0.6em;
   font-family: "Trebuchet MS", Verdana, Geneva, Arial, Helvetica, sans-serif;
   font-size: 0.8em;
+}
+
+.comptableBody {
+  background-color: #e07373;
 }
 
 #buttonNoCSS {

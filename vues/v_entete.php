@@ -7,7 +7,16 @@
     <link href="./styles/styles.css" rel="stylesheet" type="text/css" />
     <link rel="shortcut icon" type="image/x-icon" href="./images/favicon.ico" />
   </head>
-  <body>
+  <body 
+  <?php 
+  if (isset($_SESSION)) {
+    if ($pdo->verifPersonneId($_SESSION['idVisiteur']) == 2) {
+      ?>
+      class="comptableBody";
+      <?php
+    }}
+  ?>
+  >
     <div id="page">
       <div id="entete">
         <img src="./images/logo.jpg" id="logoGSB" alt="Laboratoire Galaxy-Swiss Bourdin" title="Laboratoire Galaxy-Swiss Bourdin" />
