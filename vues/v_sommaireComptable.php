@@ -18,6 +18,14 @@
         </li>
         <li class="smenu">
           <br>
+          <a href="index.php?uc=gererFraisComptable&action=AttenteFraisComptable" title="Attente de Paiment fiche de frais ">Attente de paiment fiche de frais</a>
+        </li>
+        <li class="smenu">
+          <br>
+          <a href="index.php?uc=gererFraisComptable&action=RembourserFraisComptable" title="Fiche de frais rembouser">Fiche de frais rembourser</a>
+        </li>
+        <li class="smenu">
+          <br>
           <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>
         </li>
       </ul>

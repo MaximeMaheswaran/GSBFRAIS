@@ -148,11 +148,40 @@ class PdoGsb
 		return $ligne;
 	}
 
+	/**Retourne les fiches frais à en Attente de paiement
+	 * 
+	 * @return $ligne 
+	 * @author Maxime
+	 * */
+	public function getFicheFraisVA()
+	{
+		$req = "SELECT nom , prenom , idVisiteur, mois, nbJustificatifs, montantValide, dateModif, idEtat
+				FROM FicheFrais , Visiteur
+				WHERE FicheFrais.idVisiteur = Visiteur.id
+				AND idEtat = 'VA'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
 
+	/**Retourne les fiches frais à en Attente de paiement
+	 * 
+	 * @return $ligne 
+	 * @author Maxime
+	 * */
+	public function getFicheFraisRB()
+	{
+		$req = "SELECT nom , prenom , idVisiteur, mois, nbJustificatifs, montantValide, dateModif, idEtat
+				FROM FicheFrais , Visiteur
+				WHERE FicheFrais.idVisiteur = Visiteur.id
+				AND idEtat = 'RB'";
+		$rs = PdoGsb::$monPdo->query($req);
+		$ligne = $rs->fetchAll();
+		return $ligne;
+	}
 
-	//maxime, function qui modifie dans la baSe de donnee le mdp en mdp chiffrer
-	/**
-	 * Chiffre le mot de pASse d'un Visiteur ou comptable
+	/**maxime, function qui modifie dans la baSe de donnee le mdp en mdp chiffrer
+	 * 
 	 * @param $mdp
 	 * @param $id
 	 * @return $rs le resultat de la requete c'est a dire rien d'exploitable
