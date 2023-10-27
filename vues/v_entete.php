@@ -11,10 +11,12 @@
   <?php 
   if (isset($_SESSION)) {
     if ($pdo->verifPersonneId($_SESSION['idVisiteur']) == 2) {
+      
       ?>
-      class="comptableBody";
+      class="comptableBody"
       <?php
-    }}
+    }
+  }
   ?>
   >
     <div id="page">
