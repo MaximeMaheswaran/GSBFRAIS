@@ -1,5 +1,5 @@
 <div id="contenu">
-    <h2>Liste de fiches de frais à valider <?php echo $numMois . "-" . $numAnnee ?></h2>
+    <h2>Liste de fiches de frais en attente de paiement</h2>
     <!-- Tableau de fiches de frais -->
     <table border="1">
         <tr>

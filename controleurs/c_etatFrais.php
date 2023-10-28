@@ -28,9 +28,20 @@ if (isset($_SESSION)) {
 					$libEtat = $lesInfosFicheFrais['libEtat'];
 					$montantValide = $lesInfosFicheFrais['montantValide'];
 					$nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-					$dateModif =  $lesInfosFicheFrais['dateModif'];
-					$dateModif =  dateAnglaisVersFrancais($dateModif);
+					$dateModif = $lesInfosFicheFrais['dateModif'];
+					$dateModif = dateAnglaisVersFrancais($dateModif);
 					include("vues/v_etatFrais.php");
+					break;
+				}
+			case 'validerPaiementFrais': {
+					if(isset($_POST['id'])) {
+						$idVisiteur = $_POST['id'];
+						$mois = $_POST['mois'];
+						$pdo ->validerPaiementFicheFrais($idVisiteur, $mois);
+					}
+					$ligne = $pdo->getFicheFraisVA($idVisiteur);
+					include("vues/v_listeFraisAttenteDePaiementVisiteur.php");
+					break;
 				}
 		}
 	} else {

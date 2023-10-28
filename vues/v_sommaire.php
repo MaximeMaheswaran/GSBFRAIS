@@ -19,6 +19,10 @@
             <br>
               <a href="index.php?uc=etatFrais&action=selectionnerMois" title="Consultation de mes fiches de frais">Mes fiches de frais</a>
            </li>
+           <li class="smenu">
+            <br>
+              <a href="index.php?uc=etatFrais&action=validerPaiementFrais" title="Consultation de mes fiches de frais">Mes fiches frais a payer</a>
+           </li>
  	   <li class="smenu">
          <br>
               <a href="index.php?uc=connexion&action=deconnexion" title="Se déconnecter">Déconnexion</a>

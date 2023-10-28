@@ -28,16 +28,21 @@ if (isset($_SESSION)) {
 					}
 					break;
 				}
-			case 'AttenteFraisComptable' : {
-				$ligne = $pdo->getFicheFraisVA();
-				include('vues/v_listeFraisAttenteDePaiement.php');
-				break;
-			}
-			case 'RembourserFraisComptable' : {
-				$ligne = $pdo->getFicheFraisRB();
-				include('vues/v_listeFraisRembourser.php');
-				break;
-			}
+			case 'AttenteFraisComptable': {
+					$ligne = $pdo->getFicheFraisVA();
+					include('vues/v_listeFraisAttenteDePaiement.php');
+					break;
+				}
+			case 'RembourserFraisComptable': {
+					$ligne = $pdo->getFicheFraisRB();
+					include('vues/v_listeFraisRembourser.php');
+					break;
+				}
+			case 'supprimerFrais': {
+					$idFrais = $_REQUEST['idFrais'];
+					$pdo->supprimerFraisHorsForfait($idFrais);
+					break;
+				}
 
 		}
 	} else {
