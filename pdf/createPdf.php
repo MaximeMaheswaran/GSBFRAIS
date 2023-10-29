@@ -1,6 +1,21 @@
 <?php
+require('../include/class.pdogsb.inc.php');
+include('../include/fct.inc.php');
 require("./fpdf/fpdf.php");
+$pdo = PdoGsb::getPdoGsb();
+session_start();
+$idVisiteur = $_SESSION['idVisiteur'];
+$mois = $_GET ['mois'];
 
+
+$ligneFF = $pdo -> getLesFraisForfait($idVisiteur, $mois);
+$ligneFHF = $pdo -> getLesFraisHorsForfait($idVisiteur, $mois);
+
+var_dump($ligneFF);
+$km = $ligneFF[1];
+$nui = $ligneFF[2];
+$rep = $ligneFF[3];
+var_dump($ligneFHF);
 
 // Créer une nouvelle instance de la classe FPDF
 $pdf = new FPDF();
@@ -59,17 +74,17 @@ $pdf->SetFont("Arial", "B", 11);
 $pdf->SetTextColor(0,0,0);
 $pdf->Cell(15);
 $pdf->Cell(40, 10, "Nuitée", 1, 0);
-$pdf->Cell(40, 10, "", 1, 0, "C");
+$pdf->Cell(40, 10, "$nui[2]", 1, 0, "C");
 $pdf->Cell(40, 10, "", 1, 0, "C");
 $pdf->Cell(40, 10, "", 1, 1, "C");
 $pdf->Cell(15);
 $pdf->Cell(40, 10, "Repas Midi", 1, 0);
-$pdf->Cell(40, 10, "", 1, 0, "C");
+$pdf->Cell(40, 10, "$rep[2]", 1, 0, "C");
 $pdf->Cell(40, 10, "", 1, 0, "C");
 $pdf->Cell(40, 10, "", 1, 1, "C");
 $pdf->Cell(15);
 $pdf->Cell(40, 10, "Kilométrage", 1, 0);
-$pdf->Cell(40, 10, "", 1, 0, "C");
+$pdf->Cell(40, 10, "$km[2]", 1, 0, "C");
 $pdf->Cell(40, 10, "", 1, 0, "C");
 $pdf->Cell(40, 10, "", 1, 1, "C");
 $pdf->Ln(10);
@@ -87,22 +102,12 @@ $pdf->Cell(120, 10, "Libellé", 1, 0, "C");
 $pdf->Cell(20, 10, "Montant", 1, 1, "C");
 $pdf->SetFont("Arial", "B", 11);
 $pdf->SetTextColor(0,0,0);
-$pdf->Cell(15);
-$pdf->Cell(20, 10, "", 1, 0, "C");
-$pdf->Cell(120, 10, "", 1, 0, "C");
-$pdf->Cell(20, 10, "", 1, 1, "C");
-$pdf->Cell(15);
-$pdf->Cell(20, 10, "", 1, 0, "C");
-$pdf->Cell(120, 10, "", 1, 0, "C");
-$pdf->Cell(20, 10, "", 1, 1, "C");
-$pdf->Cell(15);
-$pdf->Cell(20, 10, "", 1, 0, "C");
-$pdf->Cell(120, 10, "", 1, 0, "C");
-$pdf->Cell(20, 10, "", 1, 1, "C");
-$pdf->Cell(15);
-$pdf->Cell(20, 10, "", 1, 0, "C");
-$pdf->Cell(120, 10, "", 1, 0, "C");
-$pdf->Cell(20, 10, "", 1, 1, "C");
+foreach($ligneFF as $ligne) {
+ $pdf->Cell(15);
+$pdf->Cell(20, 10, "$ligne[date]", 1, 0, "C");
+$pdf->Cell(120, 10, "$ligne[libelle]", 1, 0, "C");
+$pdf->Cell(20, 10, "$ligne[montant]", 1, 1, "C");   
+}
 $pdf->Ln(10);
 
 

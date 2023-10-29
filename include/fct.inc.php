@@ -8,7 +8,7 @@
  */
  /**
  * Teste si un quelconque visiteur est connecté
- * @return vrai ou faux 
+ * @return $vrai ou faux 
  */
 function estConnecte(){
   return isset($_SESSION['idVisiteur']);
@@ -35,7 +35,7 @@ function deconnecter(){
  * Transforme une date au format français jj/mm/aaaa vers le format anglais aaaa-mm-jj
  
  * @param $madate au format  jj/mm/aaaa
- * @return la date au format anglais aaaa-mm-jj
+ * @return $la date au format anglais aaaa-mm-jj
 */
 function dateFrancaisVersAnglais($maDate){
 	@list($jour,$mois,$annee) = explode('/',$maDate);
@@ -45,7 +45,7 @@ function dateFrancaisVersAnglais($maDate){
  * Transforme une date au format format anglais aaaa-mm-jj vers le format français jj/mm/aaaa 
  
  * @param $madate au format  aaaa-mm-jj
- * @return la date au format format français jj/mm/aaaa
+ * @return $la date au format format français jj/mm/aaaa
 */
 function dateAnglaisVersFrancais($maDate){
    @list($annee,$mois,$jour)=explode('-',$maDate);
@@ -56,7 +56,7 @@ function dateAnglaisVersFrancais($maDate){
  * retourne le mois au format aaaamm selon le jour dans le mois
  
  * @param $date au format  jj/mm/aaaa
- * @return le mois au format aaaamm
+ * @return $le mois au format aaaamm
 */
 function getMois($date){
 		@list($jour,$mois,$annee) = explode('/',$date);
@@ -71,7 +71,7 @@ function getMois($date){
  * Indique si une valeur est un entier positif ou nul
  
  * @param $valeur
- * @return vrai ou faux
+ * @return $vrai ou faux
 */
 function estEntierPositif($valeur) {
 	return preg_match("/[^0-9]/", $valeur) == 0;
@@ -82,7 +82,7 @@ function estEntierPositif($valeur) {
  * Indique si un tableau de valeurs est constitué d'entiers positifs ou nuls
  
  * @param $tabEntiers : le tableau
- * @return vrai ou faux
+ * @return $vrai ou faux
 */
 function estTableauEntiers($tabEntiers) {
 	$ok = true;
@@ -97,7 +97,7 @@ function estTableauEntiers($tabEntiers) {
  * Vérifie si une date est inférieure d'un an à la date actuelle
  
  * @param $dateTestee 
- * @return vrai ou faux
+ * @return $vrai ou faux
 */
 function estDateDepassee($dateTestee){
 	$dateActuelle=date("d/m/Y");
@@ -111,7 +111,7 @@ function estDateDepassee($dateTestee){
  * Vérifie la validité du format d'une date française jj/mm/aaaa 
  
  * @param $date 
- * @return vrai ou faux
+ * @return $vrai ou faux
 */
 function estDateValide($date){
 	$tabDate = explode('/',$date);
@@ -136,7 +136,7 @@ function estDateValide($date){
  * Vérifie que le tableau de frais ne contient que des valeurs numériques 
  
  * @param $lesFrais 
- * @return vrai ou faux
+ * @return $vrai ou faux
 */
 function lesQteFraisValides($lesFrais){
 	return estTableauEntiers($lesFrais);
@@ -201,7 +201,7 @@ function ajouterMsg($msg){
 /**
  * Retoune le nombre de lignes du tableau des erreurs 
  
- * @return le nombre d'erreurs
+ * @return $le nombre d'erreurs
  */
 function nbErreurs(){
    if (!isset($_REQUEST['erreurs'])){
