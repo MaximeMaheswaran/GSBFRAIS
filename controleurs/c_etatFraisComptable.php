@@ -12,7 +12,7 @@ if (isset($_SESSION)) {
 					// les mois étant triés décroissants
 					$lesCles = array_keys($lesMois);
 					$moisASelectionner = $lesCles[0];
-					include("vues/v_listeMois.php");
+					include("vues/v_tabFicheFraisVisiteur.php");
 					break;
 				}
 			case 'voirEtatFrais': {
@@ -31,6 +31,7 @@ if (isset($_SESSION)) {
 					$dateModif =  $lesInfosFicheFrais['dateModif'];
 					$dateModif =  dateAnglaisVersFrancais($dateModif);
 					include("vues/v_etat.php");
+					break;
 				}
 
 			case 'voirEtatFraisComptable': {
@@ -39,7 +40,7 @@ if (isset($_SESSION)) {
 					$idVisiteur = $_POST['idVisiteur'];
 					$lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
 					$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
-					include("vues/v_listeFraisForfaitEtHorsForfaitComptable.php");
+					include("vues/v_listeFraisForfait.php");
 				}
 			case 'tabFicheFraisVisiteur': {
 					$lesMois = $pdo->getLesMoisDisponibles($idVisiteur);

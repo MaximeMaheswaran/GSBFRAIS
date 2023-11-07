@@ -15,12 +15,6 @@ if (isset($_SESSION)) {
 					include("vues/v_validerFrais.php");
 					break;
 				}
-			case 'confirmerFrais': {
-					$idVisiteur = $_POST['idVisiteur'];
-					$idFrais = $_REQUEST['idFrais'];
-					$pdo->majEtatFicheFrais($idVisiteur, $mois, 'VA');
-					break;
-				}
 		}
 	} else {
 		header("Location: index.php");
