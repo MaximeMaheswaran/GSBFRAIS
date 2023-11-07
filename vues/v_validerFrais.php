@@ -26,7 +26,7 @@
                         <input type='hidden' name='idVisiteur' value='<?php echo $idVisiteur; ?>'>
                         <input type='hidden' name='nom' value='<?php echo $nom; ?>'>
                         <input type='hidden' name='prenom' value='<?php echo $prenom; ?>'>
-                        <input type='submit' id='buttonNoCSS' value='<?php echo $nom . ' ' . $prenom; ?>'>
+                        <input type='submit' id='buttonNoCSS' value='<?php echo $nom . ' ' . $prenom ?>'>
                     </form>
                 </td>
                 <td> <?php echo $nbJustificatifs; ?> </td>
@@ -38,6 +38,4 @@
         }
         ?>
     </table>
-    <!-- Bouton de soumission du formulaire -->
-    <input type="submit" name="valider" value="Valider">
 </div>

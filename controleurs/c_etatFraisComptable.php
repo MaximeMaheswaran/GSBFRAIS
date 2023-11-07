@@ -28,8 +28,8 @@ if (isset($_SESSION)) {
 					$libEtat = $lesInfosFicheFrais['libEtat'];
 					$montantValide = $lesInfosFicheFrais['montantValide'];
 					$nbJustificatifs = $lesInfosFicheFrais['nbJustificatifs'];
-					$dateModif =  $lesInfosFicheFrais['dateModif'];
-					$dateModif =  dateAnglaisVersFrancais($dateModif);
+					$dateModif = $lesInfosFicheFrais['dateModif'];
+					$dateModif = dateAnglaisVersFrancais($dateModif);
 					include("vues/v_etat.php");
 					break;
 				}
@@ -40,7 +40,8 @@ if (isset($_SESSION)) {
 					$idVisiteur = $_POST['idVisiteur'];
 					$lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $mois);
 					$lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $mois);
-					include("vues/v_listeFraisForfait.php");
+					include("vues/v_listeFraisForfaitComptable.php");
+					break;
 				}
 			case 'tabFicheFraisVisiteur': {
 					$lesMois = $pdo->getLesMoisDisponibles($idVisiteur);

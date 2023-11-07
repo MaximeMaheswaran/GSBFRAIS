@@ -1,12 +1,14 @@
 <?php
+session_start();
+
 require_once("include/fct.inc.php");
 require_once("include/class.pdogsb.inc.php");
+$pdo = PdoGsb::getPdoGsb();
 include("vues/v_entete.php");
-session_start();
 // maxime, besoin du mois pour update tous les fichesfrais
 $mois = getMois(date("d/m/Y"));
 
-$pdo = PdoGsb::getPdoGsb();
+
 $estConnecte = estConnecte();
 // maxime, procedure qui cloture les fichefrais des mois precedent
 $pdo->allUpdatdeLigneFrais($mois);

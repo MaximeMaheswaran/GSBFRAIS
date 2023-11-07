@@ -1,4 +1,5 @@
-<form method="POST" action="index.php?uc=gererFrais&action=validerMajFraisForfait">
+<div id="contenu">
+<form method="POST" action="index.php?uc=gererFraisComptable&action=validerMajFicheFrais">
     <div class="corpsForm">
 
       <fieldset>
@@ -20,6 +21,8 @@
         ?>
       </fieldset>
     </div>
+    <input type="hidden" name="lstMois" value="<?php echo $mois ?>" >
+    <input type="hidden" name="idVisiteurUse" value="<?php echo $idVisiteur ?>" >
     <div class="piedForm">
       <p>
         <input id="ok" type="submit" value="Valider" size="20" />
@@ -48,7 +51,7 @@
           <td> <?php echo $date ?></td>
           <td><?php echo $libelle ?></td>
           <td><?php echo $montant ?></td>
-          <td><a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">Supprimer ce frais</a></td>
+          <td><a href="index.php?uc=gererFraisComptable&action=supprimerFrais&idFrais=<?php echo $id ?>" onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">Supprimer ce frais</a></td>
         </tr>
       <?php
 

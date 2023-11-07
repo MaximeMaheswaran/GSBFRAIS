@@ -9,6 +9,10 @@ body {
   font-size: 0.8em;
 }
 
+.comptableBody {
+  background-color: #e07373;
+}
+
 #buttonNoCSS {
   border: none;
   background: none;
@@ -167,11 +171,12 @@ form {
 input,
 button,
 textarea,
-select {
+select, 
+.button {
   font-family: "Trebuchet MS", sans-serif;
   font-size: 1em;
 }
-button {
+button, .button {
   width: 60px;
   height: 30px;
   text-align: center;
@@ -192,6 +197,7 @@ taille de caract�res l�g�rement sup�rieure � la normale */
   font-size: 1.1em;
   width: 95%;
 }
+
 .centre {
   text-align: center;
 }
