@@ -39,7 +39,7 @@ if (isset($_SESSION)) {
 						$mois = $_POST['mois'];
 						$pdo ->validerPaiementFicheFrais($idVisiteur, $mois);
 					}
-					$ligne = $pdo->getFicheFraisVA($idVisiteur);
+					$ligne = $pdo->getFicheFraisVisiteurVA($idVisiteur);
 					include("vues/v_listeFraisAttenteDePaiementVisiteur.php");
 					break;
 				}

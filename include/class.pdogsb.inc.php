@@ -18,10 +18,10 @@
 
 class PdoGsb
 {
-	private static $serveur = 'mysql:host=127.0.0.1';
+	private static $serveur = 'mysql:host=172.16.203.110';
 	private static $bdd = 'dbname=gsbfrais';
-	private static $user = 'root';
-	private static $mdp = 'slam';
+	private static $user = 'sio';
+	private static $mdp = 'max';
 	private static $monPdo;
 	private static $monPdoGsb = null;
 	/**
@@ -175,10 +175,13 @@ class PdoGsb
 	{
 		$req = "SELECT nom , prenom , idVisiteur, mois, nbJustificatifs, montantValide, dateModif, idEtat
 				FROM FicheFrais , Visiteur
-				WHERE FicheFrais.idVisiteur = $id
+				WHERE FicheFrais.idVisiteur = Visiteur.id
+				AND Visiteur.id = ?
 				AND idEtat = 'VA'";
-		$rs = PdoGsb::$monPdo->query($req);
-		$ligne = $rs->fetchAll();
+		$reqp = PdoGsb::$monPdo->prepare($req);
+		$reqp -> bindParam(1, $id);
+		$reqp -> execute();
+		$ligne = $reqp->fetchAll();
 		return $ligne;
 	}
 	/**Retourne les fiches frais en Attente de paiement
@@ -277,6 +280,19 @@ class PdoGsb
 		$lesLignes = $reqp->fetchAll();
 		return $lesLignes;
 	}
+
+	/**
+ 		* Retourne sous forme d'un tableau associatif de frais au forfait
+ 		* 
+ 		* @return $ligne, le libelle et le prix unitaire sous la forme d'un tableau associatif 
+ 		*/
+		 public function getFraisForfait()
+		 {
+			 $req = "SELECT * FROM  FraisForfait";
+			 $reqp = PdoGsb::$monPdo->query($req);
+			 $lesLignes = $reqp->fetchAll();
+			 return $lesLignes;
+		 }
 	/**
  		* Retourne tous les id de la table FraisForfait
  					 

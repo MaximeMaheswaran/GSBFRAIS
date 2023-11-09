@@ -1001,7 +1001,7 @@ function Output($dest='', $name='', $isUTF8=false)
 	{
 		case 'I':
 			// Send to standard output
-			$this->_checkoutput();
+			//$this->_checkoutput();
 			if(PHP_SAPI!='cli')
 			{
 				// We send to a browser
@@ -1039,7 +1039,7 @@ function Output($dest='', $name='', $isUTF8=false)
 *                              Protected methods                               *
 *******************************************************************************/
 
-protected function _checkoutput()
+/*protected function _checkoutput()
 {
 	if(PHP_SAPI!='cli')
 	{
@@ -1057,7 +1057,7 @@ protected function _checkoutput()
 		else
 			$this->Error("Some data has already been output, can't send PDF file");
 	}
-}
+}*/
 
 protected function _getpagesize($size)
 {

@@ -5,17 +5,23 @@ require("./fpdf/fpdf.php");
 $pdo = PdoGsb::getPdoGsb();
 session_start();
 $idVisiteur = $_SESSION['idVisiteur'];
+$nom = $_SESSION['nom'];
+$prenom = $_SESSION['prenom'];
 $mois = $_GET ['mois'];
 
 
 $ligneFF = $pdo -> getLesFraisForfait($idVisiteur, $mois);
 $ligneFHF = $pdo -> getLesFraisHorsForfait($idVisiteur, $mois);
+$FraisForfait = $pdo -> getFraisForfait();
 
-var_dump($ligneFF);
+
 $km = $ligneFF[1];
 $nui = $ligneFF[2];
 $rep = $ligneFF[3];
-var_dump($ligneFHF);
+$kmff = $FraisForfait[1];
+$nuiff = $FraisForfait[2];
+$repff= $FraisForfait[3];
+
 
 // Créer une nouvelle instance de la classe FPDF
 $pdf = new FPDF();
@@ -53,13 +59,13 @@ $pdf->SetFont("Arial", "B", 14);
 $pdf->Cell(30, 10, "Visiteur", 0, 0, "C");
 $pdf->SetFont("Arial", "", 14);
 $pdf->Cell(30, 10, "Nom : ", 0, 0, "C");
-$pdf->Cell(60, 10, "___________________________", 0, 0, "C");
+$pdf->Cell(60, 10, "$nom"." "." $prenom", 0, 0, "C");
 $pdf->Ln(10);
 $pdf->Cell(100, 10, "Matricule : ", 0, 0, "C");
-$pdf->Cell(1, 10, "___________________________", 0, 0, "C");
+$pdf->Cell(1, 10, "$idVisiteur", 0, 0, "C");
 $pdf->Ln(10);
 $pdf->Cell(90, 10, "Mois : ", 0, 0, "C");
-$pdf->Cell(1, 10, "___________________________", 0, 0, "C");
+$pdf->Cell(1, 10, "$mois", 0, 0, "C");
 $pdf->Ln(20);
 
 
@@ -75,18 +81,18 @@ $pdf->SetTextColor(0,0,0);
 $pdf->Cell(15);
 $pdf->Cell(40, 10, "Nuitée", 1, 0);
 $pdf->Cell(40, 10, "$nui[2]", 1, 0, "C");
-$pdf->Cell(40, 10, "", 1, 0, "C");
-$pdf->Cell(40, 10, "", 1, 1, "C");
+$pdf->Cell(40, 10, "$nuiff[2]", 1, 0, "C");
+$pdf->Cell(40, 10, "$nui[2]"*"$nuiff[2]", 1, 1, "C");
 $pdf->Cell(15);
 $pdf->Cell(40, 10, "Repas Midi", 1, 0);
 $pdf->Cell(40, 10, "$rep[2]", 1, 0, "C");
-$pdf->Cell(40, 10, "", 1, 0, "C");
-$pdf->Cell(40, 10, "", 1, 1, "C");
+$pdf->Cell(40, 10, "$repff[2]", 1, 0, "C");
+$pdf->Cell(40, 10, "$rep[2]"*"$repff[2]", 1, 1, "C");
 $pdf->Cell(15);
 $pdf->Cell(40, 10, "Kilométrage", 1, 0);
 $pdf->Cell(40, 10, "$km[2]", 1, 0, "C");
-$pdf->Cell(40, 10, "", 1, 0, "C");
-$pdf->Cell(40, 10, "", 1, 1, "C");
+$pdf->Cell(40, 10, "$kmff[2]", 1, 0, "C");
+$pdf->Cell(40, 10, "$km[2]"*"$kmff[2]", 1, 1, "C");
 $pdf->Ln(10);
 
 // autre frais
@@ -102,7 +108,7 @@ $pdf->Cell(120, 10, "Libellé", 1, 0, "C");
 $pdf->Cell(20, 10, "Montant", 1, 1, "C");
 $pdf->SetFont("Arial", "B", 11);
 $pdf->SetTextColor(0,0,0);
-foreach($ligneFF as $ligne) {
+foreach($ligneFHF as $ligne) {
  $pdf->Cell(15);
 $pdf->Cell(20, 10, "$ligne[date]", 1, 0, "C");
 $pdf->Cell(120, 10, "$ligne[libelle]", 1, 0, "C");
