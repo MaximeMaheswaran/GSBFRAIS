@@ -9,7 +9,7 @@
   </head>
   <body 
   <?php 
-  if (isset($_SESSION)) {
+  if (isset($_SESSION['idVisiteur'])) {
     if ($pdo->verifPersonneId($_SESSION['idVisiteur']) == 2) {
       
       ?>

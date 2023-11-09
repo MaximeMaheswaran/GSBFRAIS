@@ -30,7 +30,7 @@
     </div>
     <div class="piedForm">
       <p>
-        <a class="button" href="./pdf/createPdf.php?mois=<?php if($_REQUEST['lstMois']) echo "$_REQUEST[lstMois]"?>" target="blank">PDF</a>
+        <a class="button" href="./pdf/createPdf.php?mois=<?php if(isset($_REQUEST['lstMois'])) echo "$_REQUEST[lstMois]"?>" target="blank">PDF</a>
         <input id="ok" type="submit" value="Valider" size="20" />
         <input id="annuler" type="reset" value="Effacer" size="20" />
       </p>
