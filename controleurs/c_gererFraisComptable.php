@@ -1,7 +1,6 @@
 <?php
 
 if (isset($_SESSION)) {
-	var_dump($_SESSION);
 	if ($pdo->verifPersonneId($_SESSION['idVisiteur']) == 2) {
 		include("vues/v_sommaireComptable.php");
 		$idVisiteur = $_SESSION['idVisiteur'];

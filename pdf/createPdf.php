@@ -31,7 +31,7 @@ $pdf->AddPage();
 
 
 // Logo : 8 >position à gauche du document (en mm), 2 >position en haut du document, 80 >largeur de l'image en mm). La hauteur est calculée automatiquement.
-$pdf->Image('../images/logo.jpg', 85, 2);
+$pdf->Image('../images/logo1.jpg', 85, 2);
 // Saut de ligne 20 mm
 $pdf->Ln(30);
 
