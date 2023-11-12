@@ -11,13 +11,14 @@ switch($action){
 	case 'valideConnexion':{
 		$login = $_REQUEST['login'];
 		$mdp = $_REQUEST['mdp'];
-		$visiteur = $pdo->getInfosVisiteur($login,$mdp);
-		if(!is_array( $visiteur)){
+		$verif = $pdo->verifVisiteur($login, $mdp);
+		if ($verif == 0) {
 			ajouterErreur("Login ou mot de passe incorrect");
 			include("vues/v_erreurs.php");
 			include("vues/v_connexion.php");
 		}
 		else{
+			$visiteur = $pdo->getInfosVisiteur($login,$mdp);
 			$id = $visiteur['id'];
 			$nom =  $visiteur['nom'];
 			$prenom = $visiteur['prenom'];
@@ -25,6 +26,7 @@ switch($action){
 			include("vues/v_sommaire.php");
 		}
 		break;
+		
 	}
 	default :{
 		include("vues/v_connexion.php");
